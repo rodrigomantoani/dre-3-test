@@ -1,0 +1,212 @@
+❯ docker-compose -f compose.yaml up -d
+[+] Running 47/47
+ ✔ airflow-webserver Pulled                                                                                                                                                        45.6s
+ ✔ redis Pulled                                                                                                                                                                    77.7s
+   ✔ 323d31fa11ec Pull complete                                                                                                                                                    35.3s
+   ✔ 67d6949a391e Pull complete                                                                                                                                                    66.2s
+   ✔ 223ac6cd20bc Pull complete                                                                                                                                                    70.5s
+   ✔ 50f092169b10 Pull complete                                                                                                                                                    67.4s
+   ✔ 1ef69efe6db3 Pull complete                                                                                                                                                    67.1s
+   ✔ 39ad5645d4ce Pull complete                                                                                                                                                    68.2s
+ ✔ airflow-worker Pulled                                                                                                                                                           45.6s
+   ✔ 934ce60d1040 Pull complete                                                                                                                                                     5.1s
+   ✔ 1433a1692260 Pull complete                                                                                                                                                     2.9s
+   ✔ fe42a001e145 Pull complete                                                                                                                                                     4.0s
+   ✔ edb8a32593ba Pull complete                                                                                                                                                     4.9s
+   ✔ 19b3dd7b946c Pull complete                                                                                                                                                     5.6s
+   ✔ 5641ae8eacb0 Pull complete                                                                                                                                                     5.9s
+   ✔ c3f48eb30d9b Pull complete                                                                                                                                                    11.4s
+   ✔ 60ad4f512aab Pull complete                                                                                                                                                     7.5s
+   ✔ 95e91bd1c7ce Pull complete                                                                                                                                                    13.2s
+   ✔ a110539d5616 Pull complete                                                                                                                                                    31.7s
+   ✔ d9a02bd2b49a Pull complete                                                                                                                                                    12.4s
+   ✔ 4b2b50558aca Pull complete                                                                                                                                                    13.4s
+   ✔ 13d6b6cce0a6 Pull complete                                                                                                                                                    14.2s
+   ✔ 9dcc86a82e05 Pull complete                                                                                                                                                    15.4s
+   ✔ 6536d2d330a3 Pull complete                                                                                                                                                    15.2s
+   ✔ 31357ca92cb9 Pull complete                                                                                                                                                    16.4s
+   ✔ e8cc6e8f5092 Pull complete                                                                                                                                                    16.4s
+   ✔ ac23e70084f0 Pull complete                                                                                                                                                    17.5s
+   ✔ 4f4fb700ef54 Pull complete                                                                                                                                                    17.3s
+   ✔ 80e513d83ba7 Pull complete                                                                                                                                                    18.3s
+ ✔ airflow-triggerer Pulled                                                                                                                                                        45.6s
+ ✔ airflow-init Pulled                                                                                                                                                             45.6s
+ ✔ airflow-scheduler Pulled                                                                                                                                                        45.6s
+ ✔ postgres Pulled                                                                                                                                                                 72.4s
+   ✔ aa6fbc30c84e Pull complete                                                                                                                                                    32.2s
+   ✔ 7495dd9a7534 Pull complete                                                                                                                                                    18.9s
+   ✔ 315e4f3b46c2 Pull complete                                                                                                                                                    21.7s
+   ✔ ba82aab0ebf7 Pull complete                                                                                                                                                    23.3s
+   ✔ d23c85d6eacd Pull complete                                                                                                                                                    25.7s
+   ✔ a98eb4aa071f Pull complete                                                                                                                                                    27.8s
+   ✔ b0e138aa7cc7 Pull complete                                                                                                                                                    29.2s
+   ✔ 5d91cf4cf4f7 Pull complete                                                                                                                                                    31.2s
+   ✔ 6b38a4cf92cf Pull complete                                                                                                                                                    38.5s
+   ✔ 5cc1dabb8272 Pull complete                                                                                                                                                    32.2s
+   ✔ c13269c9b4a3 Pull complete                                                                                                                                                    33.9s
+   ✔ c2d5064d2315 Pull complete                                                                                                                                                    33.3s
+   ✔ 045fecca2a4c Pull complete                                                                                                                                                    34.3s
+   ✔ cfd9e03f1954 Pull complete                                                                                                                                                    65.5s
+[+] Running 9/9
+ ✔ Network internal_default                Created                                                                                                                                  0.0s
+ ✔ Volume "internal_postgres-db-volume"    Created                                                                                                                                  0.0s
+ ✔ Container internal-redis-1              Healthy                                                                                                                                  0.1s
+ ✔ Container internal-postgres-1           Healthy                                                                                                                                  0.1s
+ ✘ Container internal-airflow-init-1       service "airflow-init" didn't complete successfully: exit 1                                                                              0.0s
+ ✔ Container internal-airflow-triggerer-1  Created                                                                                                                                  0.0s
+ ✔ Container internal-airflow-scheduler-1  Created                                                                                                                                  0.0s
+ ✔ Container internal-airflow-webserver-1  Created                                                                                                                                  0.0s
+ ✔ Container internal-airflow-worker-1     Created                                                                                                                                  0.0s
+service "airflow-init" didn't complete successfully: exit 1
+
+
+Troubleshoot Steps
+
+❯ docker-compose -f compose.yaml logs airflow-init
+airflow-init-1  | The container is run as root user. For security, consider using a regular user account.
+airflow-init-1  | ....................
+airflow-init-1  | ERROR! Maximum number of retries (20) reached.
+airflow-init-1  |
+airflow-init-1  | Last check result:
+airflow-init-1  | $ airflow db check
+airflow-init-1  | /home/airflow/.local/lib/python3.7/site-packages/airflow/models/base.py:49 MovedIn20Warning: Deprecated API features detected! These feature(s) are not compatible with SQLAlchemy 2.0. To prevent incompatible upgrades prior to updating applications, ensure requirements files are pinned to "sqlalchemy<2.0". Set environment variable SQLALCHEMY_WARN_20=1 to show all deprecation warnings.  Set environment variable SQLALCHEMY_SILENCE_UBER_WARNING=1 to silence this message. (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+airflow-init-1  | [2024-08-21 13:58:39,726] {cli_action_loggers.py:135} WARNING - Failed to log action (psycopg2.OperationalError) FATAL:  password authentication failed for user "airflow"
+airflow-init-1  |
+airflow-init-1  | (Background on this error at: https://sqlalche.me/e/14/e3q8)
+airflow-init-1  | Traceback (most recent call last):
+airflow-init-1  |   File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 3361, in _wrap_pool_connect
+airflow-init-1  |     return fn()
+airflow-init-1  |   File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 327, in connect
+airflow-init-1  |     return _ConnectionFairy._checkout(self)
+airflow-init-1  |   File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 894, in _checkout
+airflow-init-1  |     fairy = _ConnectionRecord.checkout(pool)
+airflow-init-1  |   File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 493, in checkout
+airflow-init-1  |     rec = pool._do_get()
+airflow-init-1  |   File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/impl.py", line 146, in _do_get
+airflow-init-1  |     self._dec_overflow()
+airflow-init-1  |   File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/langhelpers.py", line 72, in __exit__
+airflow-init-1  |     with_traceback=exc_tb,
+airflow-init-1  |   File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+airflow-init-1  |     raise exception
+airflow-init-1  |   File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/impl.py", line 143, in _do_get
+airflow-init-1  |     return self._create_connection()
+airflow-init-1  |   File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 273, in _create_connection
+airflow-init-1  |     return _ConnectionRecord(self)
+airflow-init-1  |   File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 388, in __init__
+airflow-init-1  |     self.__connect()
+airflow-init-1  |   File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 691, in __connect
+airflow-init-1  |     pool.logger.debug("Error on connect(): %s", e)
+airflow-init-1  |   File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/langhelpers.py", line 72, in __exit__
+airflow-init-1  |     with_traceback=exc_tb,
+airflow-init-1  |   File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+airflow-init-1  |     raise exception
+airflow-init-1  |   File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 686, in __connect
+airflow-init-1  |     self.dbapi_connection = connection = pool._invoke_creator(self)
+airflow-init-1  |   File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/create.py", line 578, in connect
+airflow-init-1  |     return dialect.connect(*cargs, **cparams)
+airflow-init-1  |   File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/default.py", line 598, in connect
+airflow-init-1  |     return self.dbapi.connect(*cargs, **cparams)
+airflow-init-1  |   File "/home/airflow/.local/lib/python3.7/site-packages/psycopg2/__init__.py", line 122, in connect
+airflow-init-1  |     conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+airflow-init-1  | psycopg2.OperationalError: FATAL:  password authentication failed for user "airflow"
+airflow-init-1  |
+airflow-init-1  |
+airflow-init-1  | The above exception was the direct cause of the following exception:
+airflow-init-1  |
+airflow-init-1  | Traceback (most recent call last):
+airflow-init-1  |   File "/home/airflow/.local/bin/airflow", line 8, in <module>
+airflow-init-1  |     sys.exit(main())
+airflow-init-1  |   File "/home/airflow/.local/lib/python3.7/site-packages/airflow/__main__.py", line 39, in main
+airflow-init-1  |     args.func(args)
+airflow-init-1  |   File "/home/airflow/.local/lib/python3.7/site-packages/airflow/cli/cli_parser.py", line 52, in command
+airflow-init-1  |     return func(*args, **kwargs)
+airflow-init-1  |   File "/home/airflow/.local/lib/python3.7/site-packages/airflow/utils/cli.py", line 108, in wrapper
+airflow-init-1  |     return f(*args, **kwargs)
+airflow-init-1  |   File "/home/airflow/.local/lib/python3.7/site-packages/airflow/cli/commands/db_command.py", line 192, in check
+airflow-init-1  |     db.check()
+airflow-init-1  |   File "/home/airflow/.local/lib/python3.7/site-packages/airflow/utils/session.py", line 75, in wrapper
+airflow-init-1  |     return func(*args, session=session, **kwargs)
+airflow-init-1  |   File "/home/airflow/.local/lib/python3.7/site-packages/airflow/utils/db.py", line 1720, in check
+airflow-init-1  |     session.execute("select 1 as is_alive;")
+airflow-init-1  |   File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 1713, in execute
+airflow-init-1  |     conn = self._connection_for_bind(bind)
+airflow-init-1  |   File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 1553, in _connection_for_bind
+airflow-init-1  |     engine, execution_options
+airflow-init-1  |   File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 747, in _connection_for_bind
+airflow-init-1  |     conn = bind.connect()
+airflow-init-1  |   File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 3315, in connect
+airflow-init-1  |     return self._connection_cls(self, close_with_result=close_with_result)
+airflow-init-1  |   File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 96, in __init__
+airflow-init-1  |     else engine.raw_connection()
+airflow-init-1  |   File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 3394, in raw_connection
+airflow-init-1  |     return self._wrap_pool_connect(self.pool.connect, _connection)
+airflow-init-1  |   File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 3365, in _wrap_pool_connect
+airflow-init-1  |     e, dialect, self
+airflow-init-1  |   File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 2199, in _handle_dbapi_exception_noconnection
+airflow-init-1  |     sqlalchemy_exception, with_traceback=exc_info[2], from_=e
+airflow-init-1  |   File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+airflow-init-1  |     raise exception
+airflow-init-1  |   File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 3361, in _wrap_pool_connect
+airflow-init-1  |     return fn()
+airflow-init-1  |   File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 327, in connect
+airflow-init-1  |     return _ConnectionFairy._checkout(self)
+airflow-init-1  |   File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 894, in _checkout
+airflow-init-1  |     fairy = _ConnectionRecord.checkout(pool)
+airflow-init-1  |   File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 493, in checkout
+airflow-init-1  |     rec = pool._do_get()
+airflow-init-1  |   File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/impl.py", line 146, in _do_get
+airflow-init-1  |     self._dec_overflow()
+airflow-init-1  |   File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/langhelpers.py", line 72, in __exit__
+airflow-init-1  |     with_traceback=exc_tb,
+airflow-init-1  |   File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+airflow-init-1  |     raise exception
+airflow-init-1  |   File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/impl.py", line 143, in _do_get
+airflow-init-1  |     return self._create_connection()
+airflow-init-1  |   File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 273, in _create_connection
+airflow-init-1  |     return _ConnectionRecord(self)
+airflow-init-1  |   File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 388, in __init__
+airflow-init-1  |     self.__connect()
+airflow-init-1  |   File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 691, in __connect
+airflow-init-1  |     pool.logger.debug("Error on connect(): %s", e)
+airflow-init-1  |   File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/langhelpers.py", line 72, in __exit__
+airflow-init-1  |     with_traceback=exc_tb,
+airflow-init-1  |   File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+airflow-init-1  |     raise exception
+airflow-init-1  |   File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 686, in __connect
+airflow-init-1  |     self.dbapi_connection = connection = pool._invoke_creator(self)
+airflow-init-1  |   File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/create.py", line 578, in connect
+airflow-init-1  |     return dialect.connect(*cargs, **cparams)
+airflow-init-1  |   File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/default.py", line 598, in connect
+airflow-init-1  |     return self.dbapi.connect(*cargs, **cparams)
+airflow-init-1  |   File "/home/airflow/.local/lib/python3.7/site-packages/psycopg2/__init__.py", line 122, in connect
+airflow-init-1  |     conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+airflow-init-1  | sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) FATAL:  password authentication failed for user "airflow"
+airflow-init-1  |
+airflow-init-1  | (Background on this error at: https://sqlalche.me/e/14/e3q8)
+airflow-init-1  |
+
+
+Had to create Airflow user
+
+❯ docker exec -it internal-postgres-1 psql -U admin -d airflow
+psql (13.16 (Debian 13.16-1.pgdg120+1))
+Type "help" for help.
+
+airflow=# \du
+                                   List of roles
+ Role name |                         Attributes                         | Member of
+-----------+------------------------------------------------------------+-----------
+ admin     | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
+
+airflow=# CREATE USER airflow WITH PASSWORD 'airflow';
+CREATE ROLE
+airflow=# GRANT ALL PRIVILEGES ON DATABASE airflow TO airflow;
+GRANT
+airflow=# \du
+                                   List of roles
+ Role name |                         Attributes                         | Member of
+-----------+------------------------------------------------------------+-----------
+ admin     | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
+ airflow   |                                                            | {}
+
+airflow=#
