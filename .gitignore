@@ -47,3 +47,9 @@ coverage.xml
 *.log
 docker-compose.override.yml
 docker-compose.override.yaml
+
+# IntelliJ IDEA
+.idea/
+
+# macOS system files
+.DS_Store
