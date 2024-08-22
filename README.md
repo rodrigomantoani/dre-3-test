@@ -7,7 +7,6 @@ This repository contains documentation and architecture details for deploying Ap
 - [Architecture Overview](#architecture-overview)
 - [Proposed Enhancements](#proposed-enhancements)
 - [Error Fixes and Optimizations](#error-fixes-and-optimizations)
-- [Health Check Details](#health-check-details)
 - [Execution Success Details](#execution-success-details)
 
 ## Architecture Overview
